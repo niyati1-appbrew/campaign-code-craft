@@ -209,20 +209,7 @@ const Index = () => {
               Campaign Generator
             </h1>
           </div>
-          <div className="flex gap-2">
-            <Link to="/campaigns">
-              <Button variant="outline" className="flex items-center gap-2">
-                <History className="w-4 h-4" />
-                View Campaigns
-              </Button>
-            </Link>
-            <Link to="/analytics">
-              <Button variant="outline" className="flex items-center gap-2">
-                <BarChart3 className="w-4 h-4" />
-                Analytics
-              </Button>
-            </Link>
-          </div>
+
         </div>
 
         {/* Header */}
