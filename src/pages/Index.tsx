@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Bookmark, Dart, Bulb } from "lucide-react";
+import { Bookmark, Target, Lightbulb } from "lucide-react";
 import GeneratorForm from "@/components/GeneratorForm";
 import ResultsDisplay from "@/components/ResultsDisplay";
 import { GeneratedContent } from "@/types/generator";
@@ -100,7 +100,7 @@ const Index = () => {
               <Bookmark className="w-8 h-8 text-white" />
             </div>
             <div className="p-3 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full">
-              <Dart className="w-8 h-8 text-white" />
+              <Target className="w-8 h-8 text-white" />
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent mb-4">
@@ -116,11 +116,11 @@ const Index = () => {
               Creative Offer Names
             </Badge>
             <Badge variant="secondary" className="px-4 py-2 bg-pink-100 text-pink-800 border-pink-200">
-              <Dart className="w-4 h-4 mr-2" />
+              <Target className="w-4 h-4 mr-2" />
               Memorable Promo Codes
             </Badge>
             <Badge variant="secondary" className="px-4 py-2 bg-orange-100 text-orange-800 border-orange-200">
-              <Bulb className="w-4 h-4 mr-2" />
+              <Lightbulb className="w-4 h-4 mr-2" />
               AI-Powered Generation
             </Badge>
           </div>
