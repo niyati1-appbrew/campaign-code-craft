@@ -73,7 +73,7 @@ const GeneratorForm = ({ onGenerate, isGenerating }: GeneratorFormProps) => {
           </Label>
           <Input
             id="product"
-            placeholder="e.g., Skincare, T-shirts, Home Decor"
+            placeholder="e.g., Skincare, T-shirts, Home Decor, Electronics"
             value={formData.product}
             onChange={(e) => updateFormData("product", e.target.value)}
             className="bg-white"
