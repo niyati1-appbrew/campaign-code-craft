@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, TrendingUp, Target, Lightbulb, Calendar } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { GeneratedContent } from "@/types/generator";
@@ -73,6 +73,54 @@ const ResultsDisplay = ({ content }: ResultsDisplayProps) => {
                 </Badge>
               </div>
             )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* AI Insights */}
+      <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+        <CardHeader className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-t-lg">
+          <CardTitle className="flex items-center gap-2">
+            <TrendingUp className="w-5 h-5" />
+            AI Performance Insights
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
+                <Target className="w-4 h-4" />
+                Expected Performance
+              </h4>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600">Open Rate:</span>
+                  <span className="font-medium text-blue-800">{content.insights.expectedPerformance.openRate}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600">Click Rate:</span>
+                  <span className="font-medium text-blue-800">{content.insights.expectedPerformance.clickThroughRate}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600">Est. Orders:</span>
+                  <span className="font-medium text-blue-800">{content.insights.expectedPerformance.estimatedOrders}</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
+                <Lightbulb className="w-4 h-4" />
+                Best Practices
+              </h4>
+              <ul className="space-y-1 text-sm text-blue-700">
+                {content.insights.bestPractices.map((practice, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-blue-500 mt-1">•</span>
+                    <span>{practice}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -152,16 +200,18 @@ const ResultsDisplay = ({ content }: ResultsDisplayProps) => {
         </Card>
       </div>
 
-      {/* Usage Tips */}
+      {/* Seasonal Trends */}
       <Card className="bg-gradient-to-r from-orange-50 to-yellow-50 border-orange-200">
         <CardHeader>
-          <CardTitle className="text-orange-800">💡 Usage Tips</CardTitle>
+          <CardTitle className="text-orange-800 flex items-center gap-2">
+            <Calendar className="w-5 h-5" />
+            Seasonal Trends & Recommendations
+          </CardTitle>
         </CardHeader>
         <CardContent className="text-sm text-orange-700 space-y-2">
-          <p>• Test different campaign names with your audience to see which resonates best</p>
-          <p>• Keep promo codes short and memorable for easy sharing</p>
-          <p>• Consider A/B testing different combinations for optimal performance</p>
-          <p>• Match the tone of your campaign with your brand voice across all channels</p>
+          {content.insights.seasonalTrends.map((trend, index) => (
+            <p key={index}>• {trend}</p>
+          ))}
         </CardContent>
       </Card>
     </div>
