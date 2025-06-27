@@ -1,23 +1,30 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
+import { FormData } from "@/types/generator";
 
 interface GeneratorFormProps {
-  onGenerate: (data: any) => void;
+  onGenerate: (data: FormData) => void;
   isGenerating: boolean;
 }
 
 const GeneratorForm = ({ onGenerate, isGenerating }: GeneratorFormProps) => {
   const [formData, setFormData] = useState({
     campaignType: "",
+    campaignSuggestion: "",
     discount: "",
     product: "",
-    brandTone: ""
+    brandTone: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -28,19 +35,26 @@ const GeneratorForm = ({ onGenerate, isGenerating }: GeneratorFormProps) => {
   };
 
   const updateFormData = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const isFormValid = formData.campaignType && formData.discount && formData.product;
+  const isFormValid =
+    formData.campaignType && formData.discount && formData.product;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <Label htmlFor="campaignType" className="text-sm font-medium text-gray-700">
+          <Label
+            htmlFor="campaignType"
+            className="text-sm font-medium text-gray-700"
+          >
             Campaign Type *
           </Label>
-          <Select value={formData.campaignType} onValueChange={(value) => updateFormData("campaignType", value)}>
+          <Select
+            value={formData.campaignType}
+            onValueChange={(value) => updateFormData("campaignType", value)}
+          >
             <SelectTrigger className="bg-white">
               <SelectValue placeholder="Select campaign type" />
             </SelectTrigger>
@@ -55,7 +69,28 @@ const GeneratorForm = ({ onGenerate, isGenerating }: GeneratorFormProps) => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="discount" className="text-sm font-medium text-gray-700">
+          <Label
+            htmlFor="campaignSuggestion"
+            className="text-sm font-medium text-gray-700"
+          >
+            Campaign Suggestion (Optional)
+          </Label>
+          <Input
+            id="campaignSuggestion"
+            placeholder="e.g., Diwali Sweet Box Launch, Summer Collection Drop"
+            value={formData.campaignSuggestion}
+            onChange={(e) =>
+              updateFormData("campaignSuggestion", e.target.value)
+            }
+            className="bg-white"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label
+            htmlFor="discount"
+            className="text-sm font-medium text-gray-700"
+          >
             Discount or Offer *
           </Label>
           <Input
@@ -68,7 +103,10 @@ const GeneratorForm = ({ onGenerate, isGenerating }: GeneratorFormProps) => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="product" className="text-sm font-medium text-gray-700">
+          <Label
+            htmlFor="product"
+            className="text-sm font-medium text-gray-700"
+          >
             Product/Category *
           </Label>
           <Input
@@ -81,10 +119,16 @@ const GeneratorForm = ({ onGenerate, isGenerating }: GeneratorFormProps) => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="brandTone" className="text-sm font-medium text-gray-700">
+          <Label
+            htmlFor="brandTone"
+            className="text-sm font-medium text-gray-700"
+          >
             Brand Tone (Optional)
           </Label>
-          <Select value={formData.brandTone} onValueChange={(value) => updateFormData("brandTone", value)}>
+          <Select
+            value={formData.brandTone}
+            onValueChange={(value) => updateFormData("brandTone", value)}
+          >
             <SelectTrigger className="bg-white">
               <SelectValue placeholder="Select brand tone" />
             </SelectTrigger>
